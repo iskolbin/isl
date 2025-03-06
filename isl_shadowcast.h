@@ -47,11 +47,17 @@
 #define ISLSC_OK 0
 #define ISLSC_ERROR_STACK_OVERFLOW 1
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 ISLSC_DEF int islsc_update(int x, int y, int radius,
                            void (*update)(int x, int y, void *udata),
                            int (*opaque)(int x, int y, void *udata),
                            void *udata);
-
+#ifdef __cplusplus
+}
+#endif
 #endif // ISL_INCLUDE_SHADOWCAST_H_
 
 #ifdef ISL_SHADOWCAST_IMPLEMENTATION
@@ -70,7 +76,6 @@ static int islsc_update(int x, int y, int radius,
   } stack[ISLSC_STACK_SIZE];
   update(x, y, udata);
   for (int i = 0; i < 8; i++) {
-    int n = 1;
     int xx = dxys[i][0], xy = dxys[i][1], yx = dxys[i][2], yy = dxys[i][3];
     stack[0] = (struct islsc_tuple){1, 1.0, 0.0};
 
