@@ -35,8 +35,8 @@
    printf("%d %5.5f\n", random_int, random_double);  // 792 0.33190
 
    author: Ilya Kolbin (iskolbin@gmail.com)
-   url: https://github.com/iskolbin/isl_random
-   git: git@github.com:iskolbin/isl_random
+   url: https://github.com/iskolbin/isl/blob/master/isl_random.h
+   git: git@github.com:iskolbin/isl
 
    LICENSE:
      See end of file for license information.
@@ -239,7 +239,7 @@ or the affirmer.
 This software is available under 2 licenses -- choose whichever you prefer.
 ------------------------------------------------------------------------------
 ALTERNATIVE A - MIT License
-Copyright (c) 2022 Ilya Kolbin
+Copyright (c) 2025 Ilya Kolbin
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
 the Software without restriction, including without limitation the rights to
