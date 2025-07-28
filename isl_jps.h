@@ -3,7 +3,7 @@
 
 /* isl_jps - v0.1 
 
-	 Public domain grid pathfinder no warranty implied; use at your own risk.
+   Public domain grid pathfinder no warranty implied; use at your own risk.
 
    Do this:
        #define ISL_JPS_IMPLEMENTATION
