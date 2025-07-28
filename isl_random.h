@@ -99,20 +99,14 @@ static inline uint64_t islr__rotl(const uint64_t x, int k) {
 }
 
 ISLR_DEF void islr_srand(uint64_t *state, uint64_t seed) {
-  for (int i = 0; i < ISLR_STATE_SIZE;
-       i++) {                   /* Splitmix64 taken from Rosetta code */
+  for (int i = 0; i < ISLR_STATE_SIZE; i++) { /* Splitmix64 taken from Rosetta code */
     seed += 0x9e3779b97f4a7c15; /* increment the state variable */
     uint64_t z = seed;          /* copy the state to a working variable */
-    z = (z ^ (z >> 30)) *
-        0xbf58476d1ce4e5b9; /* xor the variable with the variable right bit
-                               shifted 30 then multiply by a constant */
-    z = (z ^ (z >> 27)) *
-        0x94d049bb133111eb; /* xor the variable with the variable right bit
-                               shifted 27 then multiply by a constant */
-    state[i] =
-        z ^
-        (z >>
-         31); /* return the variable xored with itself right bit shifted 31 */
+    z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9; /* xor the variable with the variable right bit
+                                                 shifted 30 then multiply by a constant */
+    z = (z ^ (z >> 27)) * 0x94d049bb133111eb; /* xor the variable with the variable right bit
+                                                 shifted 27 then multiply by a constant */
+    state[i] = z ^ (z >> 31); /* return the variable xored with itself right bit shifted 31 */
   }
 }
 
@@ -143,6 +137,7 @@ ISLR_DEF int islr_rand(uint64_t *state, int from, int to) {
     return from;
   int d = (from > to) ? from - to : to - from;
   uint64_t v = islr_next(state);
+
   return (int)(v % d) + from;
 }
 
@@ -151,8 +146,7 @@ ISLR_DEF int islr_rand(uint64_t *state, int from, int to) {
    non-overlapping subsequences for parallel computations. */
 
 ISLR_DEF void islr_jump(uint64_t *state) {
-  static const uint64_t JUMP[] = {0x180ec6d33cfd0aba, 0xd5a61266f0c9392c,
-                                  0xa9582618e03fc9aa, 0x39abdc4529b1661c};
+  static const uint64_t JUMP[] = {0x180ec6d33cfd0aba, 0xd5a61266f0c9392c, 0xa9582618e03fc9aa, 0x39abdc4529b1661c};
 
   uint64_t s0 = 0;
   uint64_t s1 = 0;
@@ -181,8 +175,7 @@ ISLR_DEF void islr_jump(uint64_t *state) {
    subsequences for parallel distributed computations. */
 
 ISLR_DEF void islr_long_jump(uint64_t *state) {
-  static const uint64_t LONG_JUMP[] = {0x76e15d3efefdcbbf, 0xc5004e441c522fb3,
-                                       0x77710069854ee241, 0x39109bb02acbe635};
+  static const uint64_t LONG_JUMP[] = {0x76e15d3efefdcbbf, 0xc5004e441c522fb3, 0x77710069854ee241, 0x39109bb02acbe635};
 
   uint64_t s0 = 0;
   uint64_t s1 = 0;
